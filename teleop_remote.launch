@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <launch>
 
-  <node pkg="bittle_suite_driver" type="bittle_driver_node.cpp" name="main_module" output="screen"> </node>
+  <node pkg="bittle_suite_driver" type="bittle_driver_node" name="main_module" output="screen"> 
     <param name="port" value="/dev/ttyS0"/>
     <param name="baudRate" value="115200"/>
+  </node>
 
 </launch>
