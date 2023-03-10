@@ -10,6 +10,7 @@ project(bittle_suite_driver)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   serial
+  roslib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -102,8 +103,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES bittle_driver
+ INCLUDE_DIRS include
+ LIBRARIES bittle_suite_driver
  CATKIN_DEPENDS roscpp serial
 #  DEPENDS system_lib
 )
@@ -120,9 +121,9 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/bittle_driver.cpp
-# )
+add_library(bittle_suite_driver
+  src/bittle_driver.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -132,7 +133,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/bittle_driver.cpp)
+add_executable(bittle_driver_node src/bittle_driver_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,9 +146,12 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(bittle_driver_node
+  ${ROS_LIBRARIES}
+  ${catkin_LIBRARIES}
+  bittle_suite_driver
+  serial
+)
 
 #############
 ## Install ##
@@ -165,9 +169,9 @@ include_directories(
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-# install(TARGETS ${PROJECT_NAME}_node
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+install(TARGETS bittle_driver_node
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
