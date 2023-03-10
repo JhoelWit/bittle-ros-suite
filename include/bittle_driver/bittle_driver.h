@@ -36,7 +36,7 @@ public:
     void setTurnRadius(float turn_radius);
 
     // We'll add a callback for the ROS wrapper
-    void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
+    void cmdVelCallback(const geometry_msgs::Twist& msg);
 
     // Serial methods
     void serialWrite(std::string token);

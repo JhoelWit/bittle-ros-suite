@@ -29,13 +29,13 @@ void BittleDriver::setTurnRadius(float radius){
     turnRadius_ = radius;
 }
 
-void BittleDriver::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg){
-    ROS_INFO_STREAM("Received a twist message! Linear: " << msg->linear.x << "Angular: " << msg->angular.z);
+void BittleDriver::cmdVelCallback(const geometry_msgs::Twist& msg){
+    ROS_INFO_STREAM("Received a twist message! Linear: " << msg.linear.x << "Angular: " << msg.angular.z);
     int msgState;
-    if (msg->linear.x > 0) {msgState = 1;}
-    else if (msg->linear.x < 0) {msgState = -1;}
-    else if (msg->angular.z > 0) {msgState = 2;}
-    else if (msg->angular.z < 0) {msgState = 3;}
+    if (msg.linear.x > 0) {msgState = 1;}
+    else if (msg.linear.x < 0) {msgState = -1;}
+    else if (msg.angular.z > 0) {msgState = 2;}
+    else if (msg.angular.z < 0) {msgState = 3;}
     else {msgState = 0;}
 
     if (msgState != bittleState)
