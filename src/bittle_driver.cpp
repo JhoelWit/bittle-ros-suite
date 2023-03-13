@@ -11,7 +11,7 @@ BittleDriver::BittleDriver(std::string port, int baudRate){
     // Constructor implementation
     // Initialize the serial object
     ROS_INFO_STREAM("Opening serial connection with port: " << port << " and baud rate: " << baudRate);
-    serial::Serial bittle_serial(port, baudRate, serial::Timeout::simpleTimeout(1000));
+    serial::Serial bittleSerial(port, baudRate, serial::Timeout::simpleTimeout(1000));
 };
 
 BittleDriver::~BittleDriver(){
