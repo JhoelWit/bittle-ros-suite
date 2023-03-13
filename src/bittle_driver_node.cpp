@@ -15,14 +15,17 @@ int main(int argc, char **argv)
     nh.param<int>("baudrate", baudRate, 115200);
 
     // Instantiate BittleDriver object
-    BittleDriver driver(port, baudRate);
+    BittleDriver* driver = new BittleDriver(port, baudRate);
     ROS_INFO_STREAM("Bittle driver initialized");
 
     // Subscribe to cmd_vel topic
-    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, &BittleDriver::cmdVelCallback, &driver);
+    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, &BittleDriver::cmdVelCallback, driver);
 
     // Spin
     ros::spin();
+
+    // Delete the driver object
+    delete driver;
 
     return 0;
 }
