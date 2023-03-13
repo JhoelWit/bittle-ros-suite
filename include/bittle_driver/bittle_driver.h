@@ -24,7 +24,7 @@ private:
 
 public:
     // Constructor
-    BittleDriver(std::string port="/dev/ttyS0", int baudRate=115200);
+    BittleDriver(std::string port, int baudRate);
 
     // Destructor
     ~BittleDriver();

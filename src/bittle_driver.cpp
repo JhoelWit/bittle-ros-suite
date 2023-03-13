@@ -9,9 +9,6 @@
 // Constructor
 BittleDriver::BittleDriver(std::string port, int baudRate){
     // Constructor implementation
-    // For now we'll initialize the directions and other important serial information
-    // std::string port = "/dev/ttyS0";
-    // int baudRate = 115200; // Can also be 57600, depends on arduino equipment
     // Initialize the serial object
     serial::Serial bittle_serial(port, baudRate, serial::Timeout::simpleTimeout(1000));
 };
@@ -46,5 +43,6 @@ void BittleDriver::cmdVelCallback(const geometry_msgs::Twist& msg){
 }
 
 void BittleDriver::serialWrite(std::string token){
+    ROS_INFO_STREAM("Writing token: " << token << "!!");
     bittleSerial.write(token.c_str());
 }

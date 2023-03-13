@@ -16,9 +16,10 @@ int main(int argc, char **argv)
 
     // Instantiate BittleDriver object
     BittleDriver driver(port, baudRate);
+    ROS_INFO_STREAM("Bittle driver initialized");
 
     // Subscribe to cmd_vel topic
-    ros::Subscriber sub = nh.subscribe("cmd_vel", 1, &BittleDriver::cmdVelCallback, &driver);
+    ros::Subscriber sub = nh.subscribe("/cmd_vel", 1, &BittleDriver::cmdVelCallback, &driver);
 
     // Spin
     ros::spin();
