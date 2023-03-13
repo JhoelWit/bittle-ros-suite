@@ -5,18 +5,21 @@
 #include <string>
 #include <serial/serial.h>
 
+serial::Serial* bittleSerial;
 
 // Constructor
 BittleDriver::BittleDriver(std::string port, int baudRate){
     // Constructor implementation
     // Initialize the serial object
     ROS_INFO_STREAM("Opening serial connection with port: " << port << " and baud rate: " << baudRate);
-    serial::Serial bittleSerial(port, baudRate, serial::Timeout::simpleTimeout(1000));
+    serial::Serial* bittleSerial = new serial::Serial(port, baudRate, serial::Timeout::simpleTimeout(1000));
 };
 
 BittleDriver::~BittleDriver(){
     // Destructor implementation
-    bittleSerial.close();
+    bittleSerial->close();
+
+    delete bittleSerial;
 }
 
 void BittleDriver::setSpeed(float speed){
@@ -45,10 +48,10 @@ void BittleDriver::cmdVelCallback(const geometry_msgs::Twist& msg){
 
 void BittleDriver::serialWrite(std::string token){
     ROS_INFO_STREAM("Writing token: " << token << "!!");
-    if (!bittleSerial.isOpen())
+    if (!bittleSerial->isOpen())
     {
         ROS_INFO_STREAM("Port was closed for some reason.. Attempting to re-open");
-        bittleSerial.open();
+        bittleSerial->open();
     }
-    bittleSerial.write(token.c_str());
+    bittleSerial->write(token.c_str());
 }

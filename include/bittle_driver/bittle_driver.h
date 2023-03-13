@@ -12,7 +12,6 @@ private:
     int bittleState = 0;
     float turnRadius_;
     float linearVel_;
-    serial::Serial bittleSerial;
     std::unordered_map<int, std::string> directions = 
     {
         {1, "kwk"},     //  walk
