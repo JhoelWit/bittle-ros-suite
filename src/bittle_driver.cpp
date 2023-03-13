@@ -45,5 +45,10 @@ void BittleDriver::cmdVelCallback(const geometry_msgs::Twist& msg){
 
 void BittleDriver::serialWrite(std::string token){
     ROS_INFO_STREAM("Writing token: " << token << "!!");
+    if (!bittleSerial.isOpen())
+    {
+        ROS_INFO_STREAM("Port was closed for some reason.. Attempting to re-open");
+        bittleSerial.open();
+    }
     bittleSerial.write(token.c_str());
 }
