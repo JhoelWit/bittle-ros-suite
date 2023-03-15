@@ -12,11 +12,12 @@ BittleDriver::BittleDriver(std::string port, int baudRate){
     // Constructor implementation
     // Initialize the serial object
     ROS_INFO_STREAM("Opening serial connection with port: " << port << " and baud rate: " << baudRate);
-    serial::Serial* bittleSerial = new serial::Serial(port, baudRate, serial::Timeout::simpleTimeout(1000));
+    bittleSerial = new serial::Serial(port, baudRate, serial::Timeout::simpleTimeout(1000));
 };
 
 BittleDriver::~BittleDriver(){
     // Destructor implementation
+    ROS_INFO_STREAM("Closing the serial connection");
     bittleSerial->close();
 
     delete bittleSerial;
@@ -53,5 +54,7 @@ void BittleDriver::serialWrite(std::string token){
         ROS_INFO_STREAM("Port was closed for some reason.. Attempting to re-open");
         bittleSerial->open();
     }
-    bittleSerial->write(token);
+    size_t bytes = bittleSerial->write(token);
+    // strictly for debugging
+    ROS_INFO_STREAM("Wrote " << bytes << " bytes to bittle");
 }
