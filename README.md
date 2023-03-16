@@ -1,6 +1,6 @@
 # Bittle-Ros-Suite
 
-I'm creating this repo to develop my C++ and ROS skillset with a robotic quadruped robot. It's meant to be a "suite" of drivers I create for different functions (i.e movement, camera, groove sensors, etc.).
+I'm creating this repo to develop my C++ and ROS skillset with a robotic quadruped robot. It's meant to be a "suite" of drivers I create for different functions (i.e movement, camera, groove sensors, etc.). Still a work in progress.
 
 ## Petoi Bittle
 
