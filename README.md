@@ -20,10 +20,10 @@ The standoffs for the raspberry pi and the mount for the robot can be found from
 
 ## Dependencies and Usage
 
-Besides having the robot and raspberry pi 3A, you'll need to install ROS (I'm using Noetic) on both the pi and the machine you'll send the commands from. Once that's done and you went through the fun serial connection setup from the [Petoi docs](https://docs.petoi.com/api/serial-protocol), you'll just need to download and build this repo as a package in your catkin workspace, and do the same for the [serial](https://github.com/wjwwood/serial) package since that's needed to connect to the robot. Then, roslaunch `teleop_server.launch` on the commanding machine and `teleop_remote.launch` on the pi, and use the rqt_remote to send commands. 
+Besides having the robot and raspberry pi 3A+, you'll need to install ROS (I'm using Noetic) on both the pi and the machine you'll send the commands from. Once that's done and you went through the fun serial connection setup from the [Petoi docs](https://docs.petoi.com/api/serial-protocol), you'll just need to download and build this repo as a package in your catkin workspace, and do the same for the [serial](https://github.com/wjwwood/serial) package since that's needed to connect to the robot. Then, roslaunch `teleop_server.launch` on the commanding machine and `teleop_remote.launch` on the pi, and use the rqt_remote to send commands. 
 
 Here is an example of Spark moving through teleop commands:
 ![image](images/spark_teleop.gif)
 
 ## Contributors
-I worked on this repo myself, however a major thanks to Rongzhong Li for helping me set up andn calibrate the robot properly, and to Dmitry Maslov for helping me set up ROS on the raspberry pi and setting it up with [his Bittle driver written in python](https://github.com/AIWintermuteAI/bittle_ROS), which I used as a baseline for recontructing the base movement driver in C++
+I worked on this repo myself, however a major thanks to Rongzhong Li for helping me set up and calibrate the robot properly, and to Dmitry Maslov for helping me set up ROS on the raspberry pi and setting it up with [his Bittle driver written in python](https://github.com/AIWintermuteAI/bittle_ROS), which I used as a baseline for recontructing the base movement driver in C++
